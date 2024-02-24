@@ -18,10 +18,11 @@ import "./DonoTable.css";
 const primerObjeto = data[0];
 // Obtenemos las claves del primer objeto
 const titulos = Object.keys(primerObjeto);
-// console.log(titulos);
+// filtro los titulos que requiero menos los del indice 0 y 4
 const titulosFiltro = Object.keys(data[0]).filter(
   (key, index) => index !== 0 && index !== 4
 );
+//obtengo los values conrrespondientes a cada titulo sin repetir
 const valoresUnicosPorTitulo = titulosFiltro.map(titulo => {
     const valoresUnicosSet = new Set();
     data.forEach(objeto => {
@@ -30,14 +31,14 @@ const valoresUnicosPorTitulo = titulosFiltro.map(titulo => {
     return Array.from(valoresUnicosSet);
   });
 
-//   console.log(valoresUnicosPorTitulo);
-
 
 const DonoTable = () => {
   const [selectValue, setSelectValue] = useState("");
 
   const handleChange = (event) => {
-    setSelectedDependency(event.target.value);
+    // const newValue = event.target.value;
+    setSelectValue(event.target.value)
+    // setSelectValue(newValue !== undefined ? newValue : ''); // Asegurar que el nuevo valor no sea undefined
   };
 
   return (
@@ -47,6 +48,7 @@ const DonoTable = () => {
         sx={{
           bgcolor: "white",
           boxShadow: 3,
+          borderRadius:"12px",
         }}
       >
         <Box
@@ -69,27 +71,15 @@ const DonoTable = () => {
                   }}
                 >
                     <p>{key}</p>
-                    <Select>
-                        <MenuItem>Todo el contenido</MenuItem>
+                    <Select value={selectValue} onChange={handleChange}>
+                        <MenuItem value="">Todo el contenido</MenuItem>
                         {valoresUnicosPorTitulo[index].map((valor, idx) => (
-                            <MenuItem key={idx}>{valor}</MenuItem>
+                            <MenuItem key={idx} value={valor}>{valor}</MenuItem>
                         ))}
                     </Select>
                 </Box>
             ))}
         </Box>
-        {/* <div className="containSelects">
-        <label>{title}</label>    
-        <Select value={select} onChange={handle}>
-        <MenuItem value="">All Dependencies</MenuItem>
-        {menu.map((item, index) => (
-            <MenuItem key={index} value={item}>
-            {item}
-            </MenuItem>
-        ))}
-        </Select>
-
-        </div> */}
         <TableContainer>
           <Table>
             <TableHead>
@@ -108,7 +98,32 @@ const DonoTable = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {data.map((fila, index) => (
+                {data
+                    .filter((dat) => {
+                        if (selectValue === '') return true; // Si no se ha seleccionado nada, se muestran todos los datos
+                        return titulosFiltro.some(titulo => dat[titulo] === selectValue);
+                    })
+                    .map((dato, index) => (
+                        <TableRow key={index}>
+                            {titulos.map((titulo, index) => (
+                                <TableCell key={index} sx={{ fontSize: "1.2rem" }}>
+                                {dato[titulo]}
+                                </TableCell>
+                            ))}
+                        </TableRow>
+                    ))
+
+                }
+
+                {/* {dependencies
+                .filter((dependency) => selectedDependency === '' || dependency.name === selectedDependency)
+                .map((dependency, index) => (
+                    <TableRow key={index}>
+                    <TableCell>{dependency.name}</TableCell>
+                    <TableCell>{dependency.version}</TableCell>
+                    </TableRow>
+                ))} */}
+              {/* {data.map((fila, index) => (
                 <TableRow key={index}>
                   {titulos.map((titulo, index) => (
                     <TableCell key={index} sx={{ fontSize: "1.2rem" }}>
@@ -116,7 +131,7 @@ const DonoTable = () => {
                     </TableCell>
                   ))}
                 </TableRow>
-              ))}
+              ))} */}
             </TableBody>
           </Table>
         </TableContainer>
