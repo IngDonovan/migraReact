@@ -6,9 +6,10 @@ import {
   TableBody,
   TableRow,
   TableCell,
-  makeStyles,
+  Container,
 } from "@mui/material";
 import { data } from "../../data";
+import "./DonoTable.css";
 
 const DonoTable = () => {
   // Obtenemos el primer objeto de la lista
@@ -20,28 +21,33 @@ const DonoTable = () => {
   return (
     <>
       <h1>Tabla 2</h1>
-      <TableContainer>
-        <Table>
-          <TableHead>
-            <TableRow>
-              {titulos.map((key, index) => (
-                <TableCell key={index}>{key}</TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {data.map((fila, index) => (
-              <TableRow key={index}>
-                {titulos.map((titulo, index) => (
-                  <TableCell key={index}>
-                    {fila[titulo]}
-                  </TableCell>
+      <Container
+        sx={{
+          bgcolor: "white",
+          boxShadow:3,
+        }}
+      >
+        <TableContainer>
+          <Table >
+            <TableHead>
+              <TableRow >
+                {titulos.map((key, index) => (
+                  <TableCell key={index} sx={{ fontSize: "1.2rem" }}>{key}</TableCell>
                 ))}
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+            </TableHead>
+            <TableBody>
+              {data.map((fila, index) => (
+                <TableRow key={index}>
+                  {titulos.map((titulo, index) => (
+                    <TableCell key={index} sx={{ fontSize: "1.2rem" }}>{fila[titulo]}</TableCell>
+                  ))}
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Container>
     </>
   );
 };
