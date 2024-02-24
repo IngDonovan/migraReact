@@ -6,9 +6,9 @@ import './SelectTable.css'
 
 const  SelectTable = ({
     title,
+    menu,
     select,
     handle,
-    consumer,
 }) => {
 
 
@@ -18,9 +18,9 @@ const  SelectTable = ({
         <label>{title}</label>    
         <Select value={select} onChange={handle}>
             <MenuItem value="">All Dependencies</MenuItem>
-            {consumer.map((dependency, index) => (
-                <MenuItem key={index} value={dependency.name}>
-                {dependency.name}
+            {menu.map((item, index) => (
+                <MenuItem key={index} value={item}>
+                {item}
                 </MenuItem>
             ))}
         </Select>

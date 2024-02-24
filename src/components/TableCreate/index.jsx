@@ -22,26 +22,15 @@ const backend = [
 
   {
     title:"Plan de beneficio",
-    menu:[
-      { name: 'Sura', version: '^11.11.3' },
-      { name: 'NuevaEps', version: '^11.11.0' },
-      { name: 'SegurosBolivar', version: '^5.15.10' },
-    ],
+    menu:['Sura','NuevaEps','SegurosBolivar'],
   },
   {
     title:"Tipo de Regimen",
-    menu:[
-      { name: 'Contributivo' },
-      { name: 'Subsidiado'},
-      { name: 'Especial' },
-    ],
+    menu:['Contributivo','Subsidiado','Especial'],
   },
   {
     title:"Estado",
-    menu:[
-      { name: 'Activo' },
-      { name: 'Inactivo'},
-    ],
+    menu:['Activo','Inactivo'],
   },
 
   ];
@@ -57,15 +46,15 @@ const TableCreate = () => {
   return (
     <>
       <div className='container-tab'>
-        {/* <Select value={selectedDependency} onChange={handleChange}>
-          <MenuItem value="">All Dependencies</MenuItem>
-          {dependencies.map((dependency, index) => (
-            <MenuItem key={index} value={dependency.name}>
-              {dependency.name}
-            </MenuItem>
-          ))}
-        </Select> */}
-        <SelectTable select={selectedDependency} handle={handleChange} consumer={dependencies} />
+        {backend.map((back) => (
+          <SelectTable 
+            select={selectedDependency} 
+            handle={handleChange} 
+            title={back.title}
+            menu={back.menu}
+          />
+        ) 
+        )}
         <Table>
           <TableHead>
             <TableRow>
