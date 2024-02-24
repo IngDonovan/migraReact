@@ -1,6 +1,6 @@
 
 
-export const dataCrud = [{"Codigo":"8a96a866-8efa-4e50-9645-647061d86a6e","Tipo Régimen":"Especial","Plan de Beneficio":"Sura","Estado":"Activo","Activo":false},
+export const data = [{"Codigo":"8a96a866-8efa-4e50-9645-647061d86a6e","Tipo Régimen":"Especial","Plan de Beneficio":"Sura","Estado":"Activo","Activo":false},
 {"Codigo":"1787ab90-1219-48f0-b153-50369a9d7345","Tipo Régimen":"Contributivo","Plan de Beneficio":"SegurosBolivar","Estado":"Activo","Activo":false},
 {"Codigo":"a231bd3a-bef4-42df-aaff-ff250c8179e2","Tipo Régimen":"Especial","Plan de Beneficio":"SegurosBolivar","Estado":"Inactivo","Activo":true},
 {"Codigo":"f4bd8aa3-37c1-44df-95dd-52730a1f96a3","Tipo Régimen":"Contributivo","Plan de Beneficio":"SegurosBolivar","Estado":"Activo","Activo":true},

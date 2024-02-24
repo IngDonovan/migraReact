@@ -21,14 +21,17 @@ const dependencies = [
 const backend = [
 
   {
+    id:1,
     title:"Plan de beneficio",
     menu:['Sura','NuevaEps','SegurosBolivar'],
   },
   {
+    id:2,
     title:"Tipo de Regimen",
     menu:['Contributivo','Subsidiado','Especial'],
   },
   {
+    id:3,
     title:"Estado",
     menu:['Activo','Inactivo'],
   },
@@ -48,6 +51,7 @@ const TableCreate = () => {
       <div className='container-tab'>
         {backend.map((back) => (
           <SelectTable 
+            key={back.id}
             select={selectedDependency} 
             handle={handleChange} 
             title={back.title}
